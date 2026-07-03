@@ -1,0 +1,231 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─────────────────────────────────────────────────────────────
+   Design tokens — Boston Mattress® · Dream Cloud
+   Palette + classes mirror the Claude Design "Boston Mattress
+   Store" prototype. Fonts (Playfair Display / Inter) load via
+   next/font in layout.tsx as --font-display / --font-body.
+   ───────────────────────────────────────────────────────────── */
+:root {
+  --boston-charcoal: #1c1412;
+  --boston-deep: #2a2520;
+  --boston-gold: #b8864e;
+  --boston-gold-light: #d4a56a;
+  --boston-gold-dark: #8a6035;
+  --boston-cream: #fdfaf6;
+  --boston-linen: #f5ede0;
+  --boston-border: #e8ddd0;
+  --boston-text-dark: #1c1412;
+  --boston-text-muted: #78716c;
+  --boston-whatsapp: #25d366;
+  --boston-success: #15803d;
+  --boston-error: #dc2626;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--boston-cream);
+    color: var(--boston-text-dark);
+    font-family: var(--font-body), system-ui, sans-serif;
+    margin: 0;
+    -webkit-font-smoothing: antialiased;
+  }
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display), Georgia, serif;
+  }
+  input,
+  select,
+  textarea {
+    font-family: var(--font-body), system-ui, sans-serif;
+  }
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: none;
+    border-color: var(--boston-gold) !important;
+    box-shadow: 0 0 0 3px rgba(184, 134, 78, 0.15) !important;
+  }
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--boston-gold);
+    outline-offset: 2px;
+  }
+}
+
+/* ── Keyframes ── */
+@keyframes bm-fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes wa-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.45);
+  }
+  50% {
+    box-shadow: 0 0 0 12px rgba(37, 211, 102, 0);
+  }
+}
+@keyframes bm-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ── Scroll reveal ── */
+.bm-rev {
+  opacity: 0;
+  transform: translateY(26px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.bm-rev.bm-vis {
+  opacity: 1;
+  transform: none;
+}
+.bm-d1 {
+  transition-delay: 0.1s;
+}
+.bm-d2 {
+  transition-delay: 0.18s;
+}
+.bm-d3 {
+  transition-delay: 0.26s;
+}
+.bm-d4 {
+  transition-delay: 0.34s;
+}
+
+/* ── Buttons ── */
+.bm-btn-hero {
+  background: transparent;
+  color: var(--boston-gold);
+  border: 1.5px solid var(--boston-gold);
+  font-family: var(--font-body), sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  min-height: 52px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.bm-btn-hero:hover {
+  background: var(--boston-gold);
+  color: var(--boston-charcoal);
+}
+.bm-btn-ghost {
+  background: transparent;
+  color: rgba(253, 250, 246, 0.75);
+  border: 1.5px solid rgba(253, 250, 246, 0.3);
+  font-family: var(--font-body), sans-serif;
+  font-weight: 500;
+  font-size: 0.875rem;
+  letter-spacing: 0.04em;
+  padding: 0.875rem 1.75rem;
+  min-height: 52px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.bm-btn-ghost:hover {
+  color: var(--boston-cream);
+  border-color: rgba(253, 250, 246, 0.65);
+}
+.bm-btn-gold {
+  background: var(--boston-gold);
+  color: var(--boston-charcoal);
+  border: none;
+  font-family: var(--font-body), sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.875rem 2rem;
+  min-height: 52px;
+  cursor: pointer;
+  transition: background 180ms ease;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.bm-btn-gold:hover {
+  background: var(--boston-gold-light);
+}
+.bm-btn-gold:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.bm-feat {
+  transition: transform 200ms ease;
+}
+.bm-feat:hover {
+  transform: translateY(-4px);
+}
+
+/* ── Shared helpers used by success / policy / admin pages ── */
+@layer components {
+  .eyebrow {
+    font-family: var(--font-body);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--boston-gold);
+  }
+  .section {
+    @apply mx-auto w-full max-w-content px-[5%] py-16 md:py-24;
+  }
+  .field {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1.5px solid var(--boston-border);
+    background: white;
+    font-size: 0.875rem;
+    color: var(--boston-text-dark);
+  }
+}
+
+/* Respect reduced motion. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  .bm-rev {
+    opacity: 1;
+    transform: none;
+  }
+}
