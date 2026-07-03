@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { OrderStatus } from "@/types/order";
+import { STATUS_META } from "@/components/admin/bits";
 
 const STATUSES: OrderStatus[] = [
   "new",
@@ -40,17 +41,19 @@ export function OrderStatusSelect({
     }
   }
 
+  const meta = STATUS_META[value];
   return (
     <select
       value={value}
       disabled={busy}
       onChange={(e) => change(e.target.value as OrderStatus)}
       aria-label={`Status for ${id}`}
-      className="border border-border-subtle bg-white px-2 py-1 text-xs capitalize"
+      className="cursor-pointer rounded border border-[#e7e2d9] px-2 py-1 text-xs font-semibold"
+      style={{ background: meta.bg, color: meta.fg }}
     >
       {STATUSES.map((s) => (
-        <option key={s} value={s}>
-          {s}
+        <option key={s} value={s} style={{ background: "#fff", color: "#1c1007" }}>
+          {STATUS_META[s].label}
         </option>
       ))}
     </select>

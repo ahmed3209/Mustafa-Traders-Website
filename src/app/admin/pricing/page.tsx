@@ -12,8 +12,8 @@ export default async function AdminPricingPage() {
 
   return (
     <AdminShell>
-      <h1 className="font-display text-3xl font-bold">Pricing &amp; Discounts</h1>
-      <p className="mt-1 text-sm text-text-muted">
+      <h1 className="adm-display text-3xl font-bold">Pricing &amp; Discounts</h1>
+      <p className="mt-1 text-sm text-[#78716C]">
         Set base prices and optional discounts. Discounts show on the store as a
         strikethrough original price, the discounted value, and a tag.
       </p>

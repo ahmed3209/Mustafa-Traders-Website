@@ -63,56 +63,41 @@ export function PricingEditor({ sizes }: { sizes: ResolvedSize[] }) {
     }
   }
 
+  const label = "text-[0.7rem] font-bold uppercase tracking-[0.1em] text-[#78716C]";
+
   return (
     <div>
       <div className="space-y-4">
         {rows.map((row, i) => {
           const p = preview(row);
           return (
-            <div key={row.size} className="border border-border-subtle bg-white p-4">
+            <div key={row.size} className="adm-card p-5">
               <div className="mb-3 flex items-center justify-between">
-                <h3 className="font-display text-lg font-bold">{row.label}</h3>
+                <h3 className="adm-display text-lg font-bold">{row.label}</h3>
                 <div className="text-sm">
                   {p.active ? (
                     <span>
-                      <span className="text-text-muted line-through">{formatPKR(p.price)}</span>{" "}
-                      <span className="font-bold text-gold">{formatPKR(p.disc)}</span>{" "}
-                      <span className="text-success">(save {formatPKR(p.save)})</span>
+                      <span className="text-[#78716C] line-through">{formatPKR(p.price)}</span>{" "}
+                      <span className="font-bold text-[#C9A84C]">{formatPKR(p.disc)}</span>{" "}
+                      <span className="text-[#15803d]">(save {formatPKR(p.save)})</span>
                     </span>
                   ) : (
-                    <span className="font-bold text-gold">{formatPKR(p.price)}</span>
+                    <span className="font-bold text-[#C9A84C]">{formatPKR(p.price)}</span>
                   )}
                 </div>
               </div>
               <div className="grid gap-3 sm:grid-cols-3">
-                <label className="text-xs font-medium">
+                <label className={label}>
                   Base price (Rs.)
-                  <input
-                    type="number"
-                    className="field mt-1"
-                    value={row.price}
-                    onChange={(e) => set(i, "price", e.target.value)}
-                  />
+                  <input type="number" className="adm-field mt-1" value={row.price} onChange={(e) => set(i, "price", e.target.value)} />
                 </label>
-                <label className="text-xs font-medium">
+                <label className={label}>
                   Discounted price (Rs.)
-                  <input
-                    type="number"
-                    className="field mt-1"
-                    placeholder="Leave empty for none"
-                    value={row.discountPrice}
-                    onChange={(e) => set(i, "discountPrice", e.target.value)}
-                  />
+                  <input type="number" className="adm-field mt-1" placeholder="Leave empty for none" value={row.discountPrice} onChange={(e) => set(i, "discountPrice", e.target.value)} />
                 </label>
-                <label className="text-xs font-medium">
+                <label className={label}>
                   Discount tag (optional)
-                  <input
-                    type="text"
-                    className="field mt-1"
-                    placeholder="e.g. SUMMER SALE"
-                    value={row.discountLabel}
-                    onChange={(e) => set(i, "discountLabel", e.target.value)}
-                  />
+                  <input type="text" className="adm-field mt-1" placeholder="e.g. SUMMER SALE" value={row.discountLabel} onChange={(e) => set(i, "discountLabel", e.target.value)} />
                 </label>
               </div>
             </div>
@@ -121,18 +106,13 @@ export function PricingEditor({ sizes }: { sizes: ResolvedSize[] }) {
       </div>
 
       <div className="mt-6 flex items-center gap-3">
-        <button type="button" onClick={save} disabled={busy} className="bm-btn-gold">
+        <button type="button" onClick={save} disabled={busy} className="adm-btn px-6 py-3 text-[0.85rem]">
           {busy ? "Saving…" : "Save pricing"}
         </button>
-        {msg && (
-          <span className={`text-sm ${msg.ok ? "text-success" : "text-error"}`}>
-            {msg.text}
-          </span>
-        )}
+        {msg && <span className={`text-sm ${msg.ok ? "text-[#15803d]" : "text-[#b91c1c]"}`}>{msg.text}</span>}
       </div>
-      <p className="mt-3 text-xs text-text-muted">
-        Set a discounted price below the base price to show a strikethrough + tag
-        on the store. Leave it empty to remove the discount.
+      <p className="mt-3 text-xs text-[#78716C]">
+        Set a discounted price below the base price to show a strikethrough + tag on the store. Leave it empty to remove the discount.
       </p>
     </div>
   );

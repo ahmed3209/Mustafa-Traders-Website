@@ -6,6 +6,16 @@ A single-product e-commerce site by **Mustafa Traders** selling the **Boston Dre
 
 > **Status: Full-stack, deploy-ready.** Landing page (Claude Design "Boston Mattress Store" prototype — charcoal/gold/cream, Playfair + Inter), order flow persisting to Supabase + Resend email, protected admin (orders, status, notes, filters, CSV export, discount editor), GA4 + SEO structured data. Everything degrades gracefully when env vars are absent.
 
+## Links
+
+| | |
+|---|---|
+| **GitHub** | https://github.com/ahmed3209/Mustafa-Traders-Website |
+| **Live (Vercel)** | https://mustafatraders.vercel.app |
+| **Admin** | `/admin` (sign in at `/admin/login`) |
+
+Deploy loop: commit → `git push` → Vercel auto-redeploys `main`.
+
 ---
 
 ## Tech stack

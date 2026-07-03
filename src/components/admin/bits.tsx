@@ -1,19 +1,22 @@
 import type { OrderStatus } from "@/types/order";
 
-const STATUS_STYLE: Record<OrderStatus, string> = {
-  new: "bg-blue-100 text-blue-800",
-  confirmed: "bg-amber-100 text-amber-800",
-  shipped: "bg-orange-100 text-orange-800",
-  delivered: "bg-green-100 text-green-800",
-  cancelled: "bg-red-100 text-red-800",
+// Status colors from the Claude Design admin.
+export const STATUS_META: Record<OrderStatus, { bg: string; fg: string; label: string }> = {
+  new: { bg: "#DBEAFE", fg: "#1d4ed8", label: "New" },
+  confirmed: { bg: "#FEF3C7", fg: "#92400e", label: "Confirmed" },
+  shipped: { bg: "#FFEDD5", fg: "#9a3412", label: "Shipped" },
+  delivered: { bg: "#DCFCE7", fg: "#15803d", label: "Delivered" },
+  cancelled: { bg: "#FEE2E2", fg: "#b91c1c", label: "Cancelled" },
 };
 
 export function StatusBadge({ status }: { status: OrderStatus }) {
+  const s = STATUS_META[status];
   return (
     <span
-      className={`inline-block px-2 py-0.5 text-xs font-semibold capitalize ${STATUS_STYLE[status]}`}
+      className="inline-block rounded px-2 py-0.5 text-xs font-semibold"
+      style={{ background: s.bg, color: s.fg }}
     >
-      {status}
+      {s.label}
     </span>
   );
 }

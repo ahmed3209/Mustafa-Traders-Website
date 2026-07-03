@@ -212,6 +212,66 @@
   }
 }
 
+/* ── Admin theme (scoped to .admin-root) — Claude Design "Boston Mattress
+   Admin": Bodoni Moda + Jost, light grey canvas, gold gradient, dark bar. ── */
+.admin-root {
+  font-family: var(--font-admin-body), system-ui, sans-serif;
+  background: #f5f4f2;
+  color: #1c1007;
+  min-height: 100dvh;
+}
+.admin-root .adm-display {
+  font-family: var(--font-admin-display), Georgia, serif;
+}
+.adm-card {
+  background: #fff;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.06);
+}
+.adm-btn {
+  background: linear-gradient(135deg, #c9a84c, #b87333);
+  color: #1c1007;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: filter 150ms ease;
+}
+.adm-btn:hover {
+  filter: brightness(1.06);
+}
+.adm-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+.adm-field {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e7e2d9;
+  background: #fff;
+  font-family: var(--font-admin-body), sans-serif;
+  font-size: 0.9rem;
+  color: #1c1007;
+}
+.adm-row:hover {
+  background: #faf7f2;
+}
+@keyframes adm-fadein {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes adm-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* Respect reduced motion. */
 @media (prefers-reduced-motion: reduce) {
   html {
