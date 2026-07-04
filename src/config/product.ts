@@ -28,6 +28,10 @@ export interface SizeOption {
 export interface GalleryImage {
   src: string; // path under /public
   alt: string;
+  // How the image should fit its box. Use "cover" for photos that look good
+  // filling the frame, "contain" for graphics/diagrams that must show in full
+  // (e.g. the box-process and close-up grid) so nothing gets cropped.
+  fit?: "cover" | "contain";
 }
 
 export interface HeroStat {
@@ -95,14 +99,17 @@ export const product: ProductConfig = {
     {
       src: "/images/dream-cloud-bedroom.png",
       alt: "Boston Dream Cloud mattress on a wooden bed frame in a styled bedroom",
+      fit: "cover", // lifestyle photo — fills the frame nicely
     },
     {
       src: "/images/dream-cloud-details.png",
       alt: "Close-ups of Dream Cloud pocket springs, quilted cover fabric and foam layer",
+      fit: "contain", // grid graphic — show in full, don't crop
     },
     {
       src: "/images/dream-cloud-box.png",
       alt: "Boston Dream Cloud mattress shown flat, rolled, and boxed",
+      fit: "contain", // box-process graphic — show in full, don't crop
     },
   ],
   layersImage: {

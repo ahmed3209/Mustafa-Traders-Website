@@ -107,7 +107,9 @@ export function Hero() {
                 fill
                 sizes="(max-width: 768px) 100vw, 520px"
                 priority={i === 0}
-                className="object-cover transition-opacity duration-500"
+                className={`transition-opacity duration-500 ${
+                  img.fit === "contain" ? "object-contain" : "object-cover"
+                }`}
                 style={{ opacity: i === index ? 1 : 0 }}
               />
             ))}
