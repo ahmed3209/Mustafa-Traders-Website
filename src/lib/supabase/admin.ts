@@ -22,5 +22,13 @@ export function createSupabaseAdminClient() {
 
   return createClient(url, serviceKey, {
     auth: { persistSession: false, autoRefreshToken: false },
+    // Force every request to bypass Next.js' Data Cache. Without this, an
+    // unfiltered query cached while there were 0 orders keeps returning empty
+    // on later renders (a filtered query is a different cache key, so it shows
+    // fresh data). no-store guarantees admin + pricing always read live data.
+    global: {
+      fetch: (input: RequestInfo | URL, init?: RequestInit) =>
+        fetch(input, { ...init, cache: "no-store" }),
+    },
   });
 }
